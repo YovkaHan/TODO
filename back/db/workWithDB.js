@@ -2,9 +2,9 @@ const path = require('path');
 const fs = require('fs');
 
 const sqlite3 = require('sqlite3').verbose();
-const dbPath = path.resolve(__dirname, 'todo.db');
+const dbPath = path.resolve(__dirname, './files/todo.db');
 
-const dbExists = fs.existsSync(dbPath);
+const dbExists = () => fs.existsSync(dbPath);
 let db = null;
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
 
 function open() {
     return new Promise((resolve, reject) => {
-        if (dbExists) {
+        if (dbExists()) {
             console.log('Working ...');
 
             db = new sqlite3.Database(dbPath, (err) => {
@@ -37,7 +37,7 @@ function open() {
 
 function selectEveryOne() {
     return new Promise((resolve, reject) => {
-        if (dbExists) {
+        if (dbExists()) {
             db.all('SELECT * FROM `todos`', [], (err, rows)=>{
                 resolve(rows);
             });
@@ -71,7 +71,7 @@ function deleteTodo() {
 
 function close() {
     return new Promise((resolve, reject) => {
-        if (dbExists) {
+        if (dbExists()) {
             db.close((err) => {
                 if (err) {
                     reject(errorFoo(err));

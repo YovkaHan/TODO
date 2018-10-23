@@ -2,61 +2,63 @@ const path = require('path');
 const fs = require('fs');
 
 const sqlite3 = require('sqlite3').verbose();
-const dbPath = path.resolve(__dirname, 'todo.db');
+const dbPath = path.resolve(__dirname, './files/todo.db');
+const dbImportPath = path.resolve(__dirname, './files/start-info.json');
 
-const dbExists = fs.existsSync(dbPath);
-
-if (!dbExists) {
-    fs.openSync(dbPath, 'w');
-}
-
+const dbExists = () => fs.existsSync(dbPath);
 /**
  * Создание базы данных + добавление тестовой записи
  * */
 
 module.exports = function () {
-    if (!dbExists) {
-        console.log('Creating ...');
+    return new Promise((resolve, reject)=>{
+        if (!dbExists()) {
+            fs.openSync(dbPath, 'w');
 
-        const db = new sqlite3.Database(dbPath, (err) => {
-            if (err) {
-                return errorFoo(err)
-            }
-            console.log('Open the database connection.');
-        });
+            console.log('Creating ...');
 
-        db.serialize(function () {
-
-            db.run('CREATE TABLE `todos` (' +
-                '`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,' +
-                '`name` TEXT,' +
-                '`color` TEXT,' +
-                '`shape` TEXT,' +
-                '`details` TEXT)'
-            );
-
-            db.run('CREATE TABLE `add_props` (' +
-                '`todo_id` INTEGER NOT NULL,' +
-                '`prop_name` TEXT,' +
-                '`prop_value` TEXT,' +
-                'FOREIGN KEY(todo_id) REFERENCES todos(id)' +
-            ')'
-            );
-        });
-
-        // Insert some data using a statement:
-        transferInfoFromFile(path.resolve(__dirname, 'start-info.json'), db).then(()=>{
-
-            db.close((err) => {
+            const db = new sqlite3.Database(dbPath, (err) => {
                 if (err) {
                     return errorFoo(err)
                 }
-                console.log('Close the database connection.');
+                console.log('Open the database connection.');
             });
-        });
-    } else {
-        console.log('DB already exist');
-    }
+
+            db.serialize(function () {
+
+                db.run('CREATE TABLE `todos` (' +
+                    '`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,' +
+                    '`name` TEXT,' +
+                    '`color` TEXT,' +
+                    '`shape` TEXT,' +
+                    '`details` TEXT)'
+                );
+
+                db.run('CREATE TABLE `add_props` (' +
+                    '`todo_id` INTEGER NOT NULL,' +
+                    '`prop_name` TEXT,' +
+                    '`prop_value` TEXT,' +
+                    'FOREIGN KEY(todo_id) REFERENCES todos(id)' +
+                    ')'
+                );
+            });
+
+            // Insert some data using a statement:
+            transferInfoFromFile(dbImportPath, db).then(()=>{
+
+                db.close((err) => {
+                    if (err) {
+                        return errorFoo(err)
+                    }
+                    console.log('Close the database connection.');
+                    resolve();
+                });
+            });
+        } else {
+            console.log('DB already exist');
+            resolve();
+        }
+    });
 };
 
 function errorFoo(err) {

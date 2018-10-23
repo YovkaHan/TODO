@@ -29,8 +29,12 @@ const url = require('url');
 const http = require('http').Server(app);
 const io = require('socket.io')(port);
 
-const createDB = require('./db/createDB')();
-const workWithDB = require('./db/workWithDB');
+const theDB = require('./db')();
+
+theDB.deleteDB().then(()=>{
+    theDB.createDB();
+});
+
 
 http.listen(port, addr);
 
@@ -57,12 +61,12 @@ app.use(function (req, res, next) {
 });
 
 app.get('/todo-list', function(req, res) {
-    workWithDB.open().then(()=>{
-        return workWithDB.selectEveryOne();
+    theDB.workWithDB.open().then(()=>{
+        return theDB.workWithDB.selectEveryOne();
     }).then((selected)=>{
         return res.json({"selected": selected});
     }).then(()=>{
-        workWithDB.close();
+        theDB.workWithDB.close();
     }).catch((err)=>{
         res.json({"error": err});
     });
@@ -77,12 +81,12 @@ io.on('connection', (client) => {
     });
     client.on('todo-list get', function(){
 
-        workWithDB.open().then(()=>{
-            return workWithDB.selectEveryOne();
+        theDB.workWithDB.open().then(()=>{
+            return theDB.workWithDB.selectEveryOne();
         }).then((selected)=>{
             client.emit('todo-list get/result', {data: selected});
         }).then(()=>{
-            workWithDB.close();
+            theDB.workWithDB.close();
         }).catch((err)=>{
             client.emit('todo-list get/error', {error: err});
         });

@@ -4,11 +4,14 @@ import './style.scss';
 
 class Todo extends React.Component {
     render () {
+
+        const data = this.props.data;
+
         return (
             <div className={`todo`}>
                 <div className={`todo__container`}>
-                    <div className={`todo__name`}>BLA-BLA</div>
-                    <div className={`todo__details`}>BLA-BLA-BLA</div>
+                    <div className={`todo__name`}>{data.name}</div>
+                    <div className={`todo__details`}>{data.details}</div>
                 </div>
             </div>
         )

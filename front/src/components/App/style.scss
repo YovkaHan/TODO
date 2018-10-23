@@ -1,0 +1,60 @@
+
+$border-color: #9799a96b;
+
+%c-border-style {
+  border-top: 3px ridge $border-color;
+  border-left: 2px solid $border-color;
+  border-right: 2px solid $border-color;
+  border-bottom: 3px ridge $border-color;
+  border-radius: 5px;
+}
+
+.btn {
+  margin: 20px;
+  padding: 10px 20px;
+  max-width: 100px;
+
+  text-align: center;
+  cursor: pointer;
+
+  color: rgba(255, 251, 0, 0.5215686274509804);
+  background: #8bc125;
+  font-weight: 700;
+  font-family: sans-serif;
+
+  border: 1px solid rgba(255, 251, 0, 0.5215686274509804);
+  border-radius: 3px;
+
+  transition: 0.35s all ease-out;
+
+  &:hover{
+    color: rgba(255, 251, 0, 1);
+    border-color: rgba(255, 251, 0, 1);
+  }
+}
+
+
+.the-app {
+  background: #4d83ca36;
+  box-shadow: 0 0 6px 5px #4d83ca36;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 3px;
+
+  color: #314b73;
+
+  .main-title {
+    margin: 0;
+  }
+}
+
+.root-list {
+  margin: 20px 0 0 0;
+  height: 100vh;
+}
+
+.list-avatar {
+  @extend %c-border-style;
+
+  background: #f7f8ff;
+}

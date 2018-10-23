@@ -1,0 +1,67 @@
+{
+  "todos": [
+    {
+      "ID": "1",
+      "name": "Kill everyone",
+      "color": "(202,200,200,0.1)",
+      "shape": "rectangle",
+      "details": "Test data"
+    },
+    {
+      "ID": "2",
+      "name": "Resurrect everyone",
+      "color": "(202,200,100,0.1)",
+      "shape": "rectangle",
+      "details": "Test data 2"
+    },
+    {
+      "ID": "3",
+      "name": "Feed everyone",
+      "color": "(102,200,100,0.1)",
+      "shape": "rectangle",
+      "details": "Test data 3"
+    }
+  ],
+  "add_props": [
+    {
+      "todo_id": "1",
+      "prop_name": "parent",
+      "prop_value": "2"
+    },
+    {
+      "todo_id": "1",
+      "prop_name": "parent",
+      "prop_value": "3"
+    },
+    {
+      "todo_id": "1",
+      "prop_name": "prev",
+      "prop_value": "begin"
+    },
+    {
+      "todo_id": "1",
+      "prop_name": "next",
+      "prop_value": "end"
+    },
+    {
+      "todo_id": "2",
+      "prop_name": "prev",
+      "prop_value": "begin"
+    },
+    {
+      "todo_id": "2",
+      "prop_name": "next",
+      "prop_value": "3"
+    },
+    {
+      "todo_id": "3",
+      "prop_name": "prev",
+      "prop_value": "2"
+    },
+    {
+      "todo_id": "3",
+      "prop_name": "next",
+      "prop_value": "end"
+    }
+  ]
+}

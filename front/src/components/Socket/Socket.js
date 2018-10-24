@@ -5,6 +5,17 @@ const socket_count = 0;
 export default function Socket() {
     const socket = openSocket(TODOS_SERVER);
 
+    function todoGet(id, next, whenError){
+        socket.emit('todo get', id);
+
+        socket.on('todo get/result', (result)=>{
+            next(result);
+        });
+        socket.on('todo get/error', (error)=>{
+            whenError(error)
+        })
+    }
+
     function todoListGet(next, whenError){
         socket.emit('todo-list get');
 
@@ -29,6 +40,7 @@ export default function Socket() {
 
     return {
         todoListGet,
+        todoGet,
         onDisconnect
     }
 }

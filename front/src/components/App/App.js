@@ -43,7 +43,7 @@ export default class App extends React.Component {
                          onClick={this.buttonClick}>Click Me!
                     </div>
                     <main className={`root-list list-avatar`}>
-                        <TodoList data={this.state.todoList}/>
+                        <TodoList data={this.state.todoList} socket={this.state.socket}/>
                     </main>
 
                 </div>

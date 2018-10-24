@@ -11,6 +11,7 @@ module.exports = {
     open,
     close,
     selectEveryOne,
+    selectOne,
     addNew,
     edit,
     delete: deleteTodo
@@ -36,6 +37,19 @@ function open() {
 }
 
 function selectEveryOne() {
+    return new Promise((resolve, reject) => {
+        if (dbExists()) {
+            db.all('SELECT * FROM `todos`', [], (err, rows)=>{
+                resolve(rows);
+            });
+        } else {
+            console.log('DB doesn\'t exist');
+            reject('DB doesn\'t exist');
+        }
+    })
+}
+
+function selectOne(id) {
     return new Promise((resolve, reject) => {
         if (dbExists()) {
             db.all('SELECT * FROM `todos`', [], (err, rows)=>{

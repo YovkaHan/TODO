@@ -92,6 +92,19 @@ io.on('connection', (client) => {
         });
 
     });
+    client.on('todo get', function(id){
+
+        theDB.workWithDB.open().then(()=>{
+            return theDB.workWithDB.selectOne(id);
+        }).then((selected)=>{
+            client.emit('todo get/result', {data: selected});
+        }).then(()=>{
+            theDB.workWithDB.close();
+        }).catch((err)=>{
+            client.emit('todo-list get/error', {error: err});
+        });
+
+    });
 
     client.on('shut up!', function () {
         client.emit('disconnected', {data: 'disconnected'});

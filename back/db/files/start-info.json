@@ -5,7 +5,7 @@
       "name": "Kill everyone",
       "color": "(202,200,200,0.1)",
       "shape": "rectangle",
-      "details": "Test data"
+      "details": "Test data 1"
     },
     {
       "ID": "2",
@@ -20,18 +20,76 @@
       "color": "(102,200,100,0.1)",
       "shape": "rectangle",
       "details": "Test data 3"
+    },
+    {
+      "ID": "4",
+      "name": "Good news, everyone",
+      "color": "(102,205,100,0.1)",
+      "shape": "rectangle",
+      "details": "Test data 4"
+    },
+    {
+      "ID": "5",
+      "name": "Hi to everyone",
+      "color": "(102,250,100,0.1)",
+      "shape": "rectangle",
+      "details": "Test data 5"
+    },
+    {
+      "ID": "6",
+      "name": "Too risky for everyone",
+      "color": "(102,205,100,0.1)",
+      "shape": "rectangle",
+      "details": "Test data 6"
+    },
+    {
+      "ID": "7",
+      "name": "Call everyone",
+      "color": "(102,250,100,0.1)",
+      "shape": "rectangle",
+      "details": "Test data 7"
     }
   ],
   "add_props": [
     {
       "todo_id": "1",
-      "prop_name": "parent",
-      "prop_value": "2"
+      "prop_name": "child",
+      "prop_value": "root"
     },
     {
-      "todo_id": "1",
-      "prop_name": "parent",
-      "prop_value": "3"
+      "todo_id": "2",
+      "prop_name": "child",
+      "prop_value": "1"
+    },
+    {
+      "todo_id": "3",
+      "prop_name": "child",
+      "prop_value": "1"
+    },
+    {
+      "todo_id": "4",
+      "prop_name": "child",
+      "prop_value": "1"
+    },
+    {
+      "todo_id": "5",
+      "prop_name": "child",
+      "prop_value": "4"
+    },
+    {
+      "todo_id": "6",
+      "prop_name": "child",
+      "prop_value": "4"
+    },
+    {
+      "todo_id": "7",
+      "prop_name": "child",
+      "prop_value": "1"
+    },
+    {
+      "todo_id": "3",
+      "prop_name": "child",
+      "prop_value": "1"
     },
     {
       "todo_id": "1",
@@ -60,6 +118,46 @@
     },
     {
       "todo_id": "3",
+      "prop_name": "next",
+      "prop_value": "4"
+    },
+    {
+      "todo_id": "4",
+      "prop_name": "prev",
+      "prop_value": "3"
+    },
+    {
+      "todo_id": "4",
+      "prop_name": "next",
+      "prop_value": "7"
+    },
+    {
+      "todo_id": "5",
+      "prop_name": "prev",
+      "prop_value": "begin"
+    },
+    {
+      "todo_id": "5",
+      "prop_name": "next",
+      "prop_value": "6"
+    },
+    {
+      "todo_id": "6",
+      "prop_name": "prev",
+      "prop_value": "5"
+    },
+    {
+      "todo_id": "6",
+      "prop_name": "next",
+      "prop_value": "end"
+    },
+    {
+      "todo_id": "7",
+      "prop_name": "prev",
+      "prop_value": "4"
+    },
+    {
+      "todo_id": "7",
       "prop_name": "next",
       "prop_value": "end"
     }

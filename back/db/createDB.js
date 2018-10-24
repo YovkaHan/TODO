@@ -101,7 +101,6 @@ function transferInfoFromFile(file, to_db) {
                             return propsName.indexOf(prop) >= 0 ? returned.push(elem[prop]) : false
                         });
 
-                        console.log(returned);
                         statement.run(returned);
                     });
 

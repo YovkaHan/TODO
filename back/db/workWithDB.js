@@ -14,7 +14,8 @@ module.exports = {
     selectOne,
     addNew,
     edit,
-    delete: deleteTodo
+    delete: deleteTodo,
+    getTodoSequenced
 };
 
 function open() {
@@ -52,7 +53,7 @@ function selectEveryOne() {
 function selectOne(id) {
     return new Promise((resolve, reject) => {
         if (dbExists()) {
-            db.all('SELECT * FROM `todos`', [], (err, rows)=>{
+            db.all(`SELECT * FROM \`todos\` WHERE id=${id}`, (err, rows)=>{
                 resolve(rows);
             });
         } else {
@@ -60,6 +61,58 @@ function selectOne(id) {
             reject('DB doesn\'t exist');
         }
     })
+}
+
+function getTodoSequenced() {
+    const sequences=[];
+
+    return new Promise((resolve, reject) => {
+        if (dbExists()) {
+            db.all(`SELECT * FROM add_props WHERE add_props.prop_name='child' AND add_props.prop_value='root'`, (err, rows)=>{
+
+                Promise.all(rows.map(r=>{
+                    const sequence = {};
+                    return formSequence('root', r['todo_id'], sequence).then(()=>{
+                        sequences.push(sequence);
+                    });
+                })).then(()=>{
+                    resolve(sequences);
+                });
+            });
+        } else {
+            console.log('DB doesn\'t exist');
+            reject('DB doesn\'t exist');
+        }
+    })
+}
+
+function formSequence(parent, id, obj) {
+    return new Promise((resolve, reject) => {
+        return formNode(parent, id).then((node) => {
+            obj[id] = node;
+            if (node.children.length) {
+                Promise.all(node.children.map(childId => {
+                    return formSequence(id, childId, obj);
+                })).then(()=>{
+                    resolve();
+                });
+            }else {
+                resolve();
+            }
+        });
+    });
+}
+
+function formNode(parent, id) {
+    return new Promise((resolve, reject) => {
+        db.all(`SELECT * FROM add_props WHERE add_props.prop_name='child' AND add_props.prop_value=${id}`, (err, rows) => {
+            resolve({
+                id,
+                parent: parent,
+                children: rows.map(c => c['todo_id'])
+            })
+        });
+    });
 }
 
 /**

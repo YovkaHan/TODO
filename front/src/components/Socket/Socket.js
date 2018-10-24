@@ -27,6 +27,17 @@ export default function Socket() {
         })
     }
 
+    function foo(next, whenError) {
+        socket.emit( 'todo-list get sequence');
+
+        socket.on('todo-list get sequence/result', (result)=>{
+            next(result);
+        });
+        socket.on(' todo-list get sequence/error', (error)=>{
+            whenError(error)
+        })
+    }
+
     function onDisconnect(){
         return new Promise(function (resolve,reject) {
             socket.emit('shut up!');
@@ -41,7 +52,8 @@ export default function Socket() {
     return {
         todoListGet,
         todoGet,
-        onDisconnect
+        onDisconnect,
+        foo
     }
 }
 

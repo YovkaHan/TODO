@@ -31,9 +31,9 @@ const io = require('socket.io')(port);
 
 const theDB = require('./db')();
 
-theDB.deleteDB().then(()=>{
-    theDB.createDB();
-});
+// theDB.deleteDB().then(()=>{
+//     theDB.createDB();
+// });
 
 
 http.listen(port, addr);
@@ -98,6 +98,19 @@ io.on('connection', (client) => {
             return theDB.workWithDB.selectOne(id);
         }).then((selected)=>{
             client.emit('todo get/result', {data: selected});
+        }).then(()=>{
+            theDB.workWithDB.close();
+        }).catch((err)=>{
+            client.emit('todo-list get/error', {error: err});
+        });
+
+    });
+    client.on('todo-list get sequence', function(){
+
+        theDB.workWithDB.open().then(()=>{
+            return theDB.workWithDB.getTodoSequenced();
+        }).then((selected)=>{
+            client.emit('todo-list get sequence/result', {data: selected});
         }).then(()=>{
             theDB.workWithDB.close();
         }).catch((err)=>{

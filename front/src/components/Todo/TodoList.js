@@ -40,8 +40,11 @@ export default class TodoList extends React.Component {
 
     render() {
 
-        this.props.socket.todoListGet(1, (result) => {
+        this.props.socket.todoGet(1, (result) => {
             console.log(result.data);
+            this.props.socket.foo( (foo_result) => {
+                console.log(foo_result.data);
+            });
         }, (error) => {
             console.log(error)
         });

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5854b9ba-ab53-405f-961f-374f2619727c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/db/files/todo.db" beforeDir="false" afterPath="$PROJECT_DIR$/back/db/files/todo.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/db/files/todo.db-journal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/db/workWithDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/db/workWithDB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Socket/Socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Socket/Socket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Todo/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Todo/TodoList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -61,8 +55,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+            <state relative-caret-position="204">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -224,12 +218,12 @@
       <workItem from="1540288638349" duration="12382000" />
       <workItem from="1540370388200" duration="5066000" />
       <workItem from="1540379868756" duration="2066000" />
-      <workItem from="1540410295089" duration="7113000" />
+      <workItem from="1540410295089" duration="7438000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26847000" />
+    <option name="totallyTimeSpent" value="27172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -532,8 +526,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
